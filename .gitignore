@@ -1,5 +1,32 @@
+# ORCHESTRAI™ v23.0 — Git ignore rules
+# macOS artifacts
 .DS_Store
-*.log
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Editor / IDE noise
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Local audit logs (keep directory, ignore rotating content)
+audit_logs/*.log
+
+# Environment & secrets
 .env
+.env.local
 *.key
-audit_logs/
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
