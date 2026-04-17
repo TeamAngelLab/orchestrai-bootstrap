@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OrchestrAI™ — Enterprise Claude Governance Layer | Sovereign Agentic OS</title>
+<meta name="description" content="OrchestrAI™ v23.0 — The missing governance layer that makes Claude production-ready in regulated enterprises. 23-layer control plane. 115 patent claims. Live at Mondee (NASDAQ: MOND).">
+<meta property="og:title" content="OrchestrAI™ — The Missing Governance Layer for Claude">
+<meta property="og:description" content="Not a Claude wrapper. The enterprise control plane. SOX, HIPAA, FedRAMP, ITAR compliant. Live deployments. 115 patent claims.">
+<style>
+:root{--black:#0a0a0a;--white:#f9f9f7;--amber:#c17f24;--amber-light:#e8a83a;--amber-dim:rgba(193,127,36,0.1);--amber-border:rgba(193,127,36,0.22);--gray-100:#f4f4f2;--gray-300:#d0d0cc;--gray-500:#888884;--gray-700:#444440;--mono:'Courier New',monospace;--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--green:#27ae60;--blue:#2471a3}
+*{box-sizing:border-box;margin:0;padding:0}html{font-size:16px;scroll-behavior:smooth}
+body{font-family:var(--sans);background:var(--black);color:var(--white);line-height:1.65}
+a{color:inherit;text-decoration:none}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:56px;background:rgba(10,10,10,0.95);backdrop-filter:blur(12px);border-bottom:1px solid var(--amber-border)}
+.nav-logo{font-family:var(--mono);font-size:13px;color:var(--amber);letter-spacing:.1em;font-weight:700}
+.nav-logo span{color:var(--white)}
+.nav-links{display:flex;gap:2rem;list-style:none}
+.nav-links a{color:var(--gray-300);font-size:12px;letter-spacing:.05em;transition:color .2s}.nav-links a:hover{color:var(--amber)}
+.nav-badge{background:rgba(39,174,96,.15);border:1px solid rgba(39,174,96,.3);color:#27ae60;padding:3px 10px;font-size:10px;font-family:var(--mono);letter-spacing:.1em}
+.btn-nav{background:var(--amber);color:var(--black);padding:7px 18px;font-size:12px;font-weight:700;letter-spacing:.06em;transition:background .2s}.btn-nav:hover{background:var(--amber-light)}
+@media(max-width:768px){.nav-links{display:none}}
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px 2rem 4rem;text-align:center;position:relative}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(193,127,36,.06) 0%,transparent 70%);pointer-events:none}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(39,174,96,.1);border:1px solid rgba(39,174,96,.25);padding:5px 14px;margin-bottom:1.5rem;font-family:var(--mono);font-size:11px;color:#27ae60;letter-spacing:.12em}
+.badge::before{content:'●';font-size:7px;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+h1{font-size:clamp(2.2rem,5vw,4.4rem);font-weight:700;line-height:1.08;letter-spacing:-.025em;margin-bottom:1.25rem;max-width:900px}
+h1 em{font-style:normal;color:var(--amber)}
+.hero-sub{font-size:clamp(.95rem,1.6vw,1.15rem);color:var(--gray-300);max-width:580px;margin:0 auto 2rem;line-height:1.75}
+.hero-actions{display:flex;gap:.85rem;flex-wrap:wrap;justify-content:center}
+.btn-primary{background:var(--amber);color:var(--black);padding:12px 28px;font-size:13px;font-weight:700;letter-spacing:.06em;display:inline-block;transition:background .2s}.btn-primary:hover{background:var(--amber-light)}
+.btn-ghost{border:1px solid rgba(255,255,255,.15);color:var(--white);padding:12px 28px;font-size:13px;letter-spacing:.06em;display:inline-block;transition:border-color .2s}.btn-ghost:hover{border-color:var(--amber);color:var(--amber)}
+/* STATS BAR */
+.stats-bar{display:flex;gap:0;margin-top:3.5rem;flex-wrap:wrap;justify-content:center;border:1px solid var(--amber-border)}
+.stat{text-align:center;padding:1.25rem 2rem;border-right:1px solid var(--amber-border)}
+.stat:last-child{border-right:none}
+.stat-num{font-size:1.75rem;font-weight:700;color:var(--amber);font-family:var(--mono)}
+.stat-label{font-size:9px;color:var(--gray-500);letter-spacing:.14em;text-transform:uppercase;margin-top:4px}
+/* SOCIAL PROOF */
+.proof-bar{background:#0d0d0b;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);padding:1.5rem 2rem;text-align:center}
+.proof-bar p{font-size:11px;color:var(--gray-700);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1rem}
+.proof-logos{display:flex;gap:2.5rem;justify-content:center;align-items:center;flex-wrap:wrap}
+.proof-logo{font-family:var(--mono);font-size:12px;color:var(--gray-500);letter-spacing:.08em;opacity:.6}
+.proof-logo strong{color:var(--gray-300);opacity:1}
+/* SECTIONS */
+section{padding:5rem 2rem}
+.container{max-width:1080px;margin:0 auto}
+.section-tag{font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:.2em;text-transform:uppercase;margin-bottom:.75rem}
+h2{font-size:clamp(1.6rem,3vw,2.4rem);font-weight:700;line-height:1.15;margin-bottom:1rem}
+.lead{font-size:1rem;color:var(--gray-300);max-width:580px;line-height:1.8}
+.dark{background:#0d0d0b}
+.mid{background:#0e0e0c}
+/* PROBLEM / SOLUTION */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-top:2.25rem;align-items:start}
+@media(max-width:800px){.two-col{grid-template-columns:1fr}}
+.callout{background:var(--amber-dim);border-left:3px solid var(--amber);padding:1.2rem 1.4rem;margin:1.4rem 0;font-size:.92rem;line-height:1.7;color:var(--gray-300)}
+.point-list{display:flex;flex-direction:column;gap:1.1rem;margin-top:1.4rem}
+.point{display:flex;gap:.8rem;align-items:flex-start}
+.dot{width:5px;height:5px;background:var(--amber);border-radius:50%;flex-shrink:0;margin-top:9px}
+.point h4{font-size:13px;font-weight:600;margin-bottom:3px}
+.point p{font-size:12px;color:var(--gray-500);line-height:1.6}
+.code-block{background:#070707;border:1px solid var(--amber-border);padding:1.6rem;font-family:var(--mono);font-size:11px;line-height:1.9;color:var(--gray-300);overflow-x:auto}
+.ck{color:var(--amber)}.cv{color:#7ec8a0}.cc{color:#444}
+/* INDUSTRY GRID */
+.industry-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;margin-top:2.25rem;background:rgba(255,255,255,.04)}
+.industry-card{background:var(--black);padding:1.75rem;transition:background .2s}
+.industry-card:hover{background:rgba(193,127,36,.03)}
+.industry-icon{font-size:1.3rem;margin-bottom:.65rem}
+.industry-card h3{font-size:13px;font-weight:700;margin-bottom:.5rem}
+.industry-card p{font-size:11px;color:var(--gray-500);line-height:1.7}
+.chips{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.6rem}
+.chip{font-size:9px;font-family:var(--mono);color:var(--gray-500);border:1px solid rgba(255,255,255,.07);padding:2px 7px}
+.vtag{display:inline-block;margin-top:.65rem;font-family:var(--mono);font-size:9px;color:var(--amber);background:var(--amber-dim);padding:2px 9px;letter-spacing:.09em}
+/* ARCHITECTURE */
+.arch-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;margin-top:2rem;background:var(--amber-border)}
+@media(max-width:640px){.arch-grid{grid-template-columns:1fr}}
+.arch-card{background:#0a0a0a;padding:1.75rem}
+.arch-tag{font-family:var(--mono);font-size:9px;color:var(--amber);letter-spacing:.14em;margin-bottom:.55rem}
+.arch-card h3{font-size:.9rem;font-weight:600;margin-bottom:.5rem}
+.arch-card p{font-size:11px;color:var(--gray-500);line-height:1.65}
+.layer-list{margin-top:.55rem;padding-left:.75rem}
+.layer-list li{font-size:10px;color:var(--gray-700);line-height:1.8;list-style:none;padding-left:.4rem;border-left:1px solid rgba(193,127,36,.18)}
+/* ACE */
+.ace-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(155px,1fr));gap:1px;margin-top:1.75rem;background:var(--amber-border)}
+.ace-step{background:#0d0d0b;padding:1.4rem;text-align:center}
+.ace-num{font-family:var(--mono);font-size:20px;font-weight:700;color:rgba(193,127,36,.22);margin-bottom:.35rem}
+.ace-step h4{font-size:12px;font-weight:600;color:var(--amber);margin-bottom:.3rem}
+.ace-step p{font-size:10px;color:var(--gray-500);line-height:1.6}
+/* DEPLOYMENTS */
+.deploy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.25rem;margin-top:1.75rem}
+.deploy-card{border:1px solid rgba(255,255,255,.06);padding:1.6rem;transition:border-color .2s}
+.deploy-card:hover{border-color:var(--amber-border)}
+.deploy-stat{font-family:var(--mono);font-size:1.75rem;font-weight:700;color:var(--amber);margin-bottom:.25rem}
+.deploy-card h3{font-size:13px;font-weight:600;margin-bottom:.45rem}
+.deploy-card p{font-size:11px;color:var(--gray-500);line-height:1.65}
+/* PARTNER SECTION */
+.partner-section{background:linear-gradient(135deg,rgba(193,127,36,.08) 0%,rgba(10,10,10,0) 60%);border-top:1px solid var(--amber-border)}
+.partner-tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin-top:2rem;background:var(--amber-border)}
+@media(max-width:700px){.partner-tiers{grid-template-columns:1fr}}
+.tier-card{background:#0c0c0a;padding:2rem}
+.tier-label{font-family:var(--mono);font-size:10px;color:var(--amber);letter-spacing:.15em;margin-bottom:.6rem}
+.tier-card h3{font-size:1rem;font-weight:700;margin-bottom:.65rem}
+.tier-list{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+.tier-list li{font-size:12px;color:var(--gray-300);padding-left:1rem;position:relative}
+.tier-list li::before{content:'→';position:absolute;left:0;color:var(--amber);font-size:10px}
+.tier-cta{margin-top:1.25rem}
+.tier-cta a{font-size:12px;color:var(--amber);border-bottom:1px solid var(--amber-border);padding-bottom:2px}
+/* METRICS */
+.metrics-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1px;background:rgba(255,255,255,.04);margin-top:2rem}
+.metric{background:var(--black);padding:1.5rem;text-align:center}
+.metric-num{font-size:2rem;font-weight:700;color:var(--amber);font-family:var(--mono)}
+.metric-label{font-size:10px;color:var(--gray-500);letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem}
+.metric-sub{font-size:10px;color:var(--gray-700);margin-top:.2rem}
+/* IP */
+.ip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1px;margin-top:1.75rem;background:rgba(255,255,255,.04)}
+.ip-card{background:var(--black);padding:1.6rem}
+.ip-num{font-family:var(--mono);font-size:22px;font-weight:700;color:rgba(193,127,36,.18);margin-bottom:.35rem}
+.ip-card h3{font-size:12px;font-weight:600;margin-bottom:.35rem}
+.ip-card p{font-size:11px;color:var(--gray-500);line-height:1.6}
+/* CTA */
+.cta-section{text-align:center;border-top:1px solid var(--amber-border)}
+.cta-section h2{max-width:680px;margin:0 auto 1rem}
+.cta-section p{color:var(--gray-300);margin-bottom:2rem;max-width:480px;margin-left:auto;margin-right:auto}
+.contact-row{display:flex;gap:1.75rem;justify-content:center;flex-wrap:wrap;margin-top:1.25rem;font-family:var(--mono);font-size:11px;color:var(--amber)}
+/* FOOTER */
+footer{background:#060606;border-top:1px solid rgba(255,255,255,.04);padding:2rem;text-align:center}
+.footer-logo{font-family:var(--mono);font-size:11px;color:var(--amber);margin-bottom:.35rem}
+.footer-sub{font-size:10px;color:var(--gray-700)}
+.footer-links{display:flex;gap:1.5rem;justify-content:center;margin-top:.75rem;flex-wrap:wrap}
+.footer-links a{font-size:10px;color:var(--gray-700);transition:color .2s}.footer-links a:hover{color:var(--amber)}
+</style>
+</head>
+<body>
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">ORCHESTR<span>AI</span>™ <span style="color:var(--gray-700);font-size:10px">v23.0</span></div>
+  <ul class="nav-links">
+    <li><a href="#why-claude">For Anthropic</a></li>
+    <li><a href="#regulated">Regulated Industries</a></li>
+    <li><a href="#architecture">Architecture</a></li>
+    <li><a href="#proof">Live Proof</a></li>
+    <li><a href="#partner">Partner</a></li>
+  </ul>
+  <div style="display:flex;gap:.75rem;align-items:center">
+    <span class="nav-badge">LIVE IN PRODUCTION</span>
+    <a href="mailto:partnerships@orchestraios.com" class="btn-nav">Partner With Us</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="badge">CLAUDE PARTNER NETWORK · APPLICATION SUBMITTED · APRIL 2026</div>
+  <h1>The <em>Control Plane</em> That Makes<br>Claude Enterprise-Ready</h1>
+  <p class="hero-sub">OrchestrAI™ v23.0 is not a Claude wrapper. It is the 23-layer sovereign governance infrastructure that makes Claude production-deployable in regulated enterprises — where AI mistakes are not recoverable.</p>
+  <div class="hero-actions">
+    <a href="mailto:partnerships@orchestraios.com" class="btn-primary">REQUEST PARTNERSHIP BRIEFING</a>
+    <a href="#why-claude" class="btn-ghost">WHY ANTHROPIC NEEDS THIS ↓</a>
+  </div>
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-num">23</div><div class="stat-label">Architecture Layers</div></div>
+    <div class="stat"><div class="stat-num">115</div><div class="stat-label">Patent Claims</div></div>
+    <div class="stat"><div class="stat-num">61+</div><div class="stat-label">Live Agents</div></div>
+    <div class="stat"><div class="stat-num">8</div><div class="stat-label">Regulated Verticals</div></div>
+    <div class="stat"><div class="stat-num">$760M+</div><div class="stat-label">Mondee Capital</div></div>
+    <div class="stat"><div class="stat-num">90min</div><div class="stat-label">Enterprise Deploy</div></div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF BAR -->
+<div class="proof-bar">
+  <p>Trusted by & Live at</p>
+  <div class="proof-logos">
+    <span class="proof-logo"><strong>MONDEE</strong> · NASDAQ: MOND</span>
+    <span class="proof-logo" style="color:var(--amber-border)">·</span>
+    <span class="proof-logo"><strong>BRAHM</strong> · Healthcare AI · India ONDC</span>
+    <span class="proof-logo" style="color:var(--amber-border)">·</span>
+    <span class="proof-logo"><strong>BUILT ON</strong> · Anthropic Claude</span>
+    <span class="proof-logo" style="color:var(--amber-border)">·</span>
+    <span class="proof-logo"><strong>GITHUB</strong> · TeamAngelLab</span>
+  </div>
+</div>
+
+<!-- WHY ANTHROPIC NEEDS ORCHESTRAI -->
+<section class="dark" id="why-claude">
+  <div class="container">
+    <div class="section-tag">// For Anthropic — Why OrchestrAI™ Belongs in Your Enterprise Stack</div>
+    <h2>Claude is the best AI model.<br>OrchestrAI™ makes it enterprise-deployable.</h2>
+    <div class="two-col">
+      <div>
+        <p class="lead" style="margin-bottom:1.4rem">When a Fortune 500 CISO asks <em>"How do we deploy Claude without it being a black box?"</em> — OrchestrAI™ is that answer. Today, that question goes unanswered and the deal is lost.</p>
+        <div class="callout"><strong>The gap:</strong> Claude provides world-class intelligence. What regulated enterprises additionally require — governance, auditability, compliance, deterministic control — Claude does not provide by design. OrchestrAI™ provides exactly that missing layer. Together: a complete, enterprise-ready sovereign AI stack.</div>
+        <div class="point-list">
+          <div class="point"><div class="dot"></div><div><h4>S.A.F.E. Gate — 90% confidence before any action</h4><p>No hallucination reaches production. Shadow execution mandatory. Enterprise trust primitive Claude alone cannot provide.</p></div></div>
+          <div class="point"><div class="dot"></div><div><h4>Forensic Audit Ledger — board-grade explainability</h4><p>Deterministic replay of every Claude decision. SOX, HIPAA, FedRAMP auditors satisfied by design, not retrofit.</p></div></div>
+          <div class="point"><div class="dot"></div><div><h4>Constitutional AI + NeMo dual-layer safety</h4><p>Claude's values enforced at infrastructure level — not as a prompt that can be overridden.</p></div></div>
+          <div class="point"><div class="dot"></div><div><h4>FastMCP at L10 — universal enterprise tool access</h4><p>Every enterprise system exposed to Claude via MCP. Claude becomes the reasoning engine across the entire stack.</p></div></div>
+          <div class="point"><div class="dot"></div><div><h4>Committed to Claude — not model-agnostic</h4><p>Claude is our primary and default intelligence layer. $250K+ API spend projected Year 1. $1M+ Year 2. We grow with Anthropic.</p></div></div>
+        </div>
+      </div>
+      <div class="code-block">
+<span class="cc"># OrchestrAI™ v23.0 — Claude as substrate</span>
+<span class="cc"># Not a wrapper. The enterprise control plane.</span>
+
+<span class="ck">primary_model</span>: <span class="cv">claude-sonnet-4</span>
+<span class="ck">routing</span>: <span class="cv">LiteLLM → Claude (L11, always)</span>
+<span class="ck">mcp</span>: <span class="cv">FastMCP L10 (all enterprise tools)</span>
+<span class="ck">safety_layer_1</span>: <span class="cv">Constitutional AI (L13)</span>
+<span class="ck">safety_layer_2</span>: <span class="cv">NeMo Guardrails (L13)</span>
+<span class="ck">memory</span>: <span class="cv">DriveOps + Redis + Mem0 (L19)</span>
+<span class="ck">governance</span>: <span class="cv">S.A.F.E. Gate ≥90% (L14)</span>
+<span class="ck">audit</span>: <span class="cv">Forensic Ledger immutable (L16)</span>
+<span class="ck">red_team</span>: <span class="cv">EVOLUTION-X ACE Loop (L21)</span>
+
+<span class="cc"># What this means for Anthropic:</span>
+<span class="ck">claude_api_spend_y1</span>: <span class="cv">$250,000+ projected</span>
+<span class="ck">claude_api_spend_y2</span>: <span class="cv">$1,000,000+ projected</span>
+<span class="ck">enterprise_deals_unlocked</span>: <span class="cv">regulated industries</span>
+<span class="ck">case_studies_ready</span>: <span class="cv">Travel + Healthcare (6 months)</span>
+<span class="ck">competitor_lock_in</span>: <span class="cv">Claude-only architecture</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REGULATED INDUSTRIES -->
+<section id="regulated">
+  <div class="container">
+    <div class="section-tag">// Regulated Industry Value Propositions</div>
+    <h2>Purpose-built for industries where<br>AI mistakes are not recoverable</h2>
+    <p class="lead">The only agentic OS with compliance, auditability, and sovereign data control built into the architecture — not added as an afterthought.</p>
+    <div class="industry-grid">
+      <div class="industry-card"><div class="industry-icon">🏦</div><h3>Financial Services & Banking</h3><p>Forensic Ledger satisfies SOX/SEC audit requirements. S.A.F.E. Gate eliminates hallucinated trades. Deployed in fraud detection, credit decisioning, and wealth management automation.</p><div class="chips"><span class="chip">SOX</span><span class="chip">SEC</span><span class="chip">Basel III</span><span class="chip">AML/KYC</span></div><span class="vtag">ACTIVE GTM — USA & MIDDLE EAST</span></div>
+      <div class="industry-card"><div class="industry-icon">🏥</div><h3>Healthcare & Life Sciences</h3><p>PII Airlock Shield (L4) enforces HIPAA at infrastructure level. Immutable FDA 21 CFR Part 11 audit trail. Live: BRAHM, 23 agents, India ONDC. Clinical decision support, prior auth, drug discovery.</p><div class="chips"><span class="chip">HIPAA</span><span class="chip">FDA 21 CFR</span><span class="chip">HL7 FHIR</span><span class="chip">GDPR</span></div><span class="vtag">LIVE — BRAHM 23 AGENTS</span></div>
+      <div class="industry-card"><div class="industry-icon">🛡</div><h3>Insurance</h3><p>Full decision audit trail for 50-state US regulatory compliance. Kill-switch governance layer. Explainable AI for claims and underwriting — the difference between AI that assists and AI regulators approve to automate.</p><div class="chips"><span class="chip">NAIC</span><span class="chip">IFRS 17</span><span class="chip">Solvency II</span></div><span class="vtag">PIPELINE — Q3 2026</span></div>
+      <div class="industry-card"><div class="industry-icon">🎓</div><h3>Education</h3><p>PII Airlock vaults student data before it reaches any LLM — making Claude deployable where raw LLM deployments are blocked by legal. K-12, higher education, accreditation reporting.</p><div class="chips"><span class="chip">FERPA</span><span class="chip">COPPA</span><span class="chip">WCAG 2.1</span></div><span class="vtag">PIPELINE — INDIA + USA</span></div>
+      <div class="industry-card"><div class="industry-icon">🔐</div><h3>Cybersecurity</h3><p>EVOLUTION-X (L21) continuously red-teams the stack. Simulate-before-act protocol — no action fires without shadow execution. Critical in SOC environments where a false positive costs millions.</p><div class="chips"><span class="chip">NIST CSF</span><span class="chip">SOC 2</span><span class="chip">ISO 27001</span><span class="chip">FedRAMP</span></div><span class="vtag">ACTIVE — RED TEAM LIVE</span></div>
+      <div class="industry-card"><div class="industry-icon">⚖</div><h3>Legal & Compliance</h3><p>Full provenance on every AI output — model, data, confidence, human reviewer. Multi-agent consensus validation reduces hallucination to near-zero for contract review and regulatory filing.</p><div class="chips"><span class="chip">ABA Rules</span><span class="chip">GDPR Art.22</span><span class="chip">E-Discovery</span></div><span class="vtag">PIPELINE — USA + UAE</span></div>
+      <div class="industry-card"><div class="industry-icon">🪖</div><h3>Defense & Government</h3><p>Sovereign Stack runs on-premise or GovCloud, zero data egress by design. Ouroboros Protocol enables air-gapped operation for classified deployments. Every action logged to immutable ledger.</p><div class="chips"><span class="chip">FedRAMP</span><span class="chip">ITAR</span><span class="chip">CMMC</span><span class="chip">DoD IL5</span></div><span class="vtag">PIPELINE — USA & GCC</span></div>
+      <div class="industry-card"><div class="industry-icon">🪙</div><h3>Crypto, Fintech & Digital Assets</h3><p>Fintech Agent (L22) for high-frequency execution with pre-commit simulation. Forensic Ledger satisfies SEC, FinCEN, and MiCA requirements simultaneously. No transaction fires without simulation pass.</p><div class="chips"><span class="chip">MiCA</span><span class="chip">FinCEN</span><span class="chip">FATF</span><span class="chip">KYC/AML</span></div><span class="vtag">PIPELINE — UAE + USA</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- LIVE PROOF / METRICS -->
+<section class="mid" id="proof">
+  <div class="container">
+    <div class="section-tag">// Live Proof — Not a Demo</div>
+    <h2>In production today.<br>Mondee (NASDAQ: MOND) is our proof point.</h2>
+    <p class="lead">OrchestrAI™ is not a research project. It runs 61+ autonomous Claude-powered agents at a publicly listed company. Real agents. Real compliance. Real transactions.</p>
+    <div class="metrics-row">
+      <div class="metric"><div class="metric-num">61+</div><div class="metric-label">Live Agents</div><div class="metric-sub">Mondee NASDAQ: MOND</div></div>
+      <div class="metric"><div class="metric-num">23</div><div class="metric-label">BRAHM Agents</div><div class="metric-sub">HIPAA · India ONDC</div></div>
+      <div class="metric"><div class="metric-num">$760M+</div><div class="metric-label">Mondee Capital</div><div class="metric-sub">Public company proof</div></div>
+      <div class="metric"><div class="metric-num">90min</div><div class="metric-label">Stack Deployment</div><div class="metric-sub">L0.5 Bootstrapper</div></div>
+      <div class="metric"><div class="metric-num">115</div><div class="metric-label">Patent Claims</div><div class="metric-sub">Filed · Active window</div></div>
+      <div class="metric"><div class="metric-num">100%</div><div class="metric-label">Claude-Native</div><div class="metric-sub">Not model-agnostic</div></div>
+    </div>
+    <div class="deploy-grid" style="margin-top:1.5rem">
+      <div class="deploy-card"><div class="deploy-stat">Travel</div><h3>Mondee (NASDAQ: MOND)</h3><p>61+ Claude-powered agents across the largest AI-enabled travel marketplace in the USA. Full L1–L23 stack. $760M+ capital raised. Board-reportable AI operations.</p><span class="vtag" style="display:inline-block;margin-top:.65rem">LIVE · NASDAQ · FULL STACK</span></div>
+      <div class="deploy-card"><div class="deploy-stat">Health</div><h3>BRAHM Healthcare</h3><p>23-agent HIPAA-compliant platform. India ONDC commerce. 9+ languages. Clinical decision support. FDA 21 CFR Part 11 audit trail active. Prior authorization automation.</p><span class="vtag" style="display:inline-block;margin-top:.65rem">LIVE · HIPAA · FDA COMPLIANT</span></div>
+      <div class="deploy-card"><div class="deploy-stat">Finance</div><h3>Financial Services</h3><p>Fintech Agent (L22) live for high-frequency decision support with pre-commit simulation. SOX/SEC forensic ledger. 90% S.A.F.E. Gate enforced on every recommendation.</p><span class="vtag" style="display:inline-block;margin-top:.65rem">ACTIVE · SOX + SEC READY</span></div>
+      <div class="deploy-card"><div class="deploy-stat">90min</div><h3>L0.5 Sovereign Stack</h3><p>Complete enterprise identity + infrastructure — domain, DNS, email, DKIM, website — deployed autonomously in 90 minutes. Proven on orchestraios.com, April 2026. Our out-of-box enterprise offering.</p><span class="vtag" style="display:inline-block;margin-top:.65rem">PROVEN · APRIL 2026</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ARCHITECTURE -->
+<section id="architecture">
+  <div class="container">
+    <div class="section-tag">// Architecture — 23-Layer Quad-Core Grid</div>
+    <h2>Every layer maps to an<br>enterprise requirement</h2>
+    <div class="arch-grid">
+      <div class="arch-card"><div class="arch-tag">CORE I · L1–L7 · NERVOUS SYSTEM</div><h3>Ingestion, Routing & Security</h3><p>Kernel · Voice GW · API GW · PII Airlock Shield · MCP+A2A Protocol · Intelligent Router · Messaging Hub</p><ul class="layer-list"><li>L4: PII Airlock — strips sensitive data before LLM exposure</li><li>L5: MCP+A2A — universal Claude tool access interface</li><li>L7: Async agent communication fabric</li></ul></div>
+      <div class="arch-card"><div class="arch-tag">CORE II · L8–L13 · BRAIN / COGNITION</div><h3>Intelligence, Memory & Strategy</h3><p>Data Ingestion · Identity · Prism Intent · Intelligence → Claude · Memory · Strategy Alignment</p><ul class="layer-list"><li>L10: FastMCP — all enterprise tools exposed to Claude</li><li>L11: LiteLLM → Claude (default, always)</li><li>L13: Constitutional AI + NeMo dual safety rails</li></ul></div>
+      <div class="arch-card"><div class="arch-tag">CORE III · L14–L17 · GOVERNANCE / NEXUS-O</div><h3>Compliance, Trust & Audit</h3><p>S.A.F.E. Pre-Flight Gate · Trust & Reputation Plane · Forensic Audit Ledger · Defense Rails</p><ul class="layer-list"><li>L14: S.A.F.E. Gate — ≥90% confidence before any action</li><li>L15: Per-agent trust scoring + hallucination penalty</li><li>L16: Forensic Ledger — deterministic replay, immutable</li></ul></div>
+      <div class="arch-card"><div class="arch-tag">CORE IV · L18–L23 · EXECUTION / SYNAPSE-X</div><h3>Automation, Evolution & Output</h3><p>Hybrid Workforce Controller · Registry · Context Serializer · EVOLUTION-X · Fintech Agent · Anti-Entropy</p><ul class="layer-list"><li>L18: Human + AI agents on one governance plane</li><li>L21: EVOLUTION-X — OS self-improvement + red team</li><li>L22: Fintech Agent — high-frequency simulation-first</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<!-- ACE LOOP -->
+<section class="dark">
+  <div class="container">
+    <div class="section-tag">// ACE v2.0 — Autonomous Continuous Evolution</div>
+    <h2>The OS that red-teams itself</h2>
+    <p class="lead">9-stage autonomous loop. Claude evaluates, improves, and deploys every cycle. S.A.F.E. Gate never skipped. ≥90% confidence required before any action reaches production.</p>
+    <div class="ace-steps">
+      <div class="ace-step"><div class="ace-num">01</div><h4>OBSERVE</h4><p>Monitor all agent activity, latency, errors, confidence scores</p></div>
+      <div class="ace-step"><div class="ace-num">02</div><h4>EVALUATE</h4><p>Claude scores every output vs success criteria + constitutional alignment</p></div>
+      <div class="ace-step"><div class="ace-num">03</div><h4>DIAGNOSE</h4><p>Root cause: model, prompt, tool, or data layer attribution</p></div>
+      <div class="ace-step"><div class="ace-num">04</div><h4>IMPROVE</h4><p>Generate improved configs via Reflexion + ExpeL patterns</p></div>
+      <div class="ace-step"><div class="ace-num">05</div><h4>SIMULATE</h4><p>Shadow-run against historical load. Must pass. Mandatory.</p></div>
+      <div class="ace-step"><div class="ace-num">06</div><h4>RED TEAM</h4><p>EVOLUTION-X adversarially probes for failure modes</p></div>
+      <div class="ace-step"><div class="ace-num">07</div><h4>S.A.F.E. GATE</h4><p>≥90% required. Below threshold → Diagnose again. Never skipped.</p></div>
+      <div class="ace-step"><div class="ace-num">08</div><h4>DEPLOY</h4><p>Zero-downtime hot-swap. Rollback capsule retained 30 days.</p></div>
+      <div class="ace-step"><div class="ace-num">09</div><h4>MONITOR</h4><p>Forensic Ledger captures delta. Cycle restarts continuously.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNER TIERS -->
+<section class="partner-section" id="partner">
+  <div class="container">
+    <div class="section-tag">// Partnership Model</div>
+    <h2>Three ways to partner<br>with OrchestrAI™</h2>
+    <p class="lead">We are selectively building a partner ecosystem with organizations that share our commitment to responsible enterprise AI. Anthropic is our foundational partner.</p>
+    <div class="partner-tiers">
+      <div class="tier-card">
+        <div class="tier-label">TIER 1 — TECHNOLOGY PARTNER</div>
+        <h3>AI Infrastructure Providers</h3>
+        <ul class="tier-list">
+          <li>OEM license for regulated verticals</li>
+          <li>White-label deployment rights</li>
+          <li>Joint IP development</li>
+          <li>Co-marketing + case studies</li>
+          <li>Revenue sharing on enterprise deals</li>
+        </ul>
+        <div class="tier-cta"><a href="mailto:partnerships@orchestraios.com">Anthropic · Cloud providers →</a></div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-label">TIER 2 — SERVICE PARTNER</div>
+        <h3>SI & Consulting Firms</h3>
+        <ul class="tier-list">
+          <li>Certified OrchestrAI™ deployment practice</li>
+          <li>Access to 8 vertical playbooks</li>
+          <li>Claude Certified Architect pathway</li>
+          <li>Partner portal + sales enablement</li>
+          <li>Co-sell on enterprise accounts</li>
+        </ul>
+        <div class="tier-cta"><a href="mailto:partnerships@orchestraios.com">Accenture · Deloitte · Infosys →</a></div>
+      </div>
+      <div class="tier-card">
+        <div class="tier-label">TIER 3 — CHANNEL PARTNER</div>
+        <h3>Resellers & ISVs</h3>
+        <ul class="tier-list">
+          <li>OrchestrAI™ reseller license</li>
+          <li>Vertical-specific configurations</li>
+          <li>Training + certification program</li>
+          <li>Deal registration protection</li>
+          <li>MDF for qualified pipeline</li>
+        </ul>
+        <div class="tier-cta"><a href="mailto:partnerships@orchestraios.com">Apply to channel program →</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- IP -->
+<section class="mid">
+  <div class="container">
+    <div class="section-tag">// Intellectual Property — 115 Patent-Pending Claims</div>
+    <h2>Architecture-level moat</h2>
+    <div class="ip-grid">
+      <div class="ip-card"><div class="ip-num">001</div><h3>TaskSpec & Execution Capsule</h3><p>Deterministic replay protocol with legal-grade audit trails for every agent action. Satisfies SEC, SOX, HIPAA audit by design.</p></div>
+      <div class="ip-card"><div class="ip-num">002</div><h3>Tri-Layer Decoupling</h3><p>Neuro-Core / Nexus-O / Synapse-X structural separation. Non-copyable architecture. 18–24 month competitor replication window.</p></div>
+      <div class="ip-card"><div class="ip-num">003</div><h3>Reputation Plane</h3><p>Per-agent trust scoring with hallucination penalty and autonomous reputation recovery. Regulators can audit agent behavior history.</p></div>
+      <div class="ip-card"><div class="ip-num">004</div><h3>EVOLUTION-X</h3><p>Self-updating OS that scans research and OSS to propose + red-team upgrades autonomously before deploying.</p></div>
+      <div class="ip-card"><div class="ip-num">005</div><h3>S.A.F.E. Risk Engine</h3><p>Simulate → Audit → Finance → Evolve. 90% confidence gate. The enterprise trust primitive no raw LLM provides.</p></div>
+      <div class="ip-card"><div class="ip-num">116</div><h3>Inter-Agent Bridge (A2A)</h3><p>Protocol for Claude sessions to communicate, share state, and pass tasks. Enables true multi-agent orchestration across all deployment surfaces.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="section-tag">// Start the Conversation</div>
+    <h2>The enterprise Claude deployment layer<br>for regulated industries</h2>
+    <p>We have submitted our Anthropic Claude Partner Network application. We are building the reference architecture for Claude enterprise deployments in regulated industries globally. Let's build this together.</p>
+    <div class="hero-actions">
+      <a href="mailto:partnerships@orchestraios.com" class="btn-primary">PARTNERSHIP ENQUIRY</a>
+      <a href="https://github.com/TeamAngelLab/orchestrai-bootstrap" class="btn-ghost" target="_blank">VIEW ON GITHUB ↗</a>
+    </div>
+    <div class="contact-row">
+      <span>partnerships@orchestraios.com</span>
+      <span>miten@orchestraios.com</span>
+      <span>+1 510 717 5712</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">ORCHESTRAI™ v23.0 — SOVEREIGN AGENTIC OPERATING SYSTEM</div>
+  <div class="footer-sub">Built on Claude · 23 Layers · 115 Patent Claims · TeamAngelLab · Mondee (NASDAQ: MOND)</div>
+  <div class="footer-links">
+    <a href="mailto:miten@orchestraios.com">miten@orchestraios.com</a>
+    <a href="mailto:partnerships@orchestraios.com">partnerships@orchestraios.com</a>
+    <a href="https://github.com/TeamAngelLab" target="_blank">GitHub</a>
+    <a href="https://www.linkedin.com/in/mitenmehta" target="_blank">LinkedIn</a>
+    <a href="https://orchestraios.com">orchestraios.com</a>
+  </div>
+  <div style="margin-top:1rem;font-size:9px;color:#1a1a1a">© 2026 OrchestrAI™ / TeamAngelLab · Patent pending · 115 claims · Built natively on Anthropic Claude · Mondee (NASDAQ: MOND)</div>
+</footer>
+</body>
+</html>
