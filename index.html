@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ORCHESTRAI™ — Aria | Enterprise AI Assistant</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root { --ink:#0A0A1A;--blue:#1A3A6B;--accent:#4A7FE5;--glow:#6BA3FF;--white:#FFFFFF;--success:#1A9E6B; }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{font-family:'DM Sans',sans-serif;background:var(--ink);color:var(--white);min-height:100vh;}
+  .bg{position:fixed;inset:0;z-index:0;background:radial-gradient(ellipse 80% 60% at 20% 10%,#1A2E5A 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,#0D1F3C 0%,transparent 50%),var(--ink);}
+  .bg::after{content:'';position:absolute;inset:0;background-image:radial-gradient(circle,rgba(74,127,229,.08) 1px,transparent 1px);background-size:40px 40px;}
+  .page{position:relative;z-index:1;display:flex;flex-direction:column;min-height:100vh;}
+  header{padding:20px 40px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(255,255,255,.06);backdrop-filter:blur(20px);background:rgba(10,10,26,.4);position:sticky;top:0;z-index:100;}
+  .logo{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;background:linear-gradient(135deg,var(--white) 0%,var(--glow) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .logo span{-webkit-text-fill-color:var(--accent);}
+  .nav{display:flex;gap:28px;align-items:center;}
+  .nav a{font-size:13px;font-weight:500;color:rgba(255,255,255,.5);text-decoration:none;letter-spacing:.05em;text-transform:uppercase;transition:color .2s;}
+  .nav a:hover{color:var(--white);}
+  .nav .cta{background:var(--accent);color:white!important;padding:8px 18px;border-radius:6px;}
+  .hero{padding:70px 40px 50px;text-align:center;max-width:760px;margin:0 auto;}
+  .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(74,127,229,.12);border:1px solid rgba(74,127,229,.3);padding:6px 16px;border-radius:100px;font-size:12px;font-weight:500;color:var(--glow);letter-spacing:.08em;text-transform:uppercase;margin-bottom:24px;}
+  .badge::before{content:'●';font-size:8px;animation:pulse 2s infinite;}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+  h1{font-family:'Syne',sans-serif;font-size:clamp(34px,5vw,54px);font-weight:800;line-height:1.1;margin-bottom:18px;background:linear-gradient(160deg,var(--white) 0%,rgba(255,255,255,.7) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  h1 em{font-style:normal;background:linear-gradient(135deg,var(--accent),var(--glow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+  .sub{font-size:16px;line-height:1.6;color:rgba(255,255,255,.45);max-width:520px;margin:0 auto 36px;}
+  .chat-wrap{max-width:780px;margin:0 auto 60px;padding:0 40px;width:100%;}
+  .box{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:20px;overflow:hidden;backdrop-filter:blur(20px);box-shadow:0 40px 80px rgba(0,0,0,.4);}
+  .box-head{padding:18px 22px;border-bottom:1px solid rgba(255,255,255,.06);display:flex;align-items:center;gap:14px;background:rgba(255,255,255,.02);}
+  .av{position:relative;}
+  .av-circle{width:46px;height:46px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--accent));display:flex;align-items:center;justify-content:center;font-size:20px;font-family:'Syne',sans-serif;font-weight:700;color:white;box-shadow:0 0 0 2px rgba(74,127,229,.3);}
+  .av-dot{position:absolute;bottom:2px;right:2px;width:11px;height:11px;border-radius:50%;background:var(--success);border:2px solid var(--ink);}
+  .ag-name{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;}
+  .ag-role{font-size:12px;color:rgba(255,255,255,.4);}
+  .bgs{margin-left:auto;display:flex;gap:6px;}
+  .bg-tag{font-size:10px;font-weight:600;padding:3px 10px;border-radius:100px;border:1px solid rgba(74,127,229,.3);color:var(--glow);background:rgba(74,127,229,.08);text-transform:uppercase;letter-spacing:.06em;}
+  .gate{padding:28px 24px;display:flex;flex-direction:column;gap:14px;}
+  .gt{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;}
+  .gs{font-size:13px;color:rgba(255,255,255,.4);line-height:1.5;margin-bottom:4px;}
+  .row{display:flex;gap:10px;}
+  .ig{flex:1;display:flex;flex-direction:column;gap:5px;}
+  .ig label{font-size:10px;font-weight:700;color:rgba(255,255,255,.35);letter-spacing:.1em;text-transform:uppercase;}
+  .ig input{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:11px 14px;color:var(--white);font-size:13px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s;}
+  .ig input:focus{border-color:var(--accent);}
+  .ig input::placeholder{color:rgba(255,255,255,.2);}
+  .gbtn{background:var(--accent);color:var(--white);border:none;border-radius:9px;padding:13px 22px;font-size:13px;font-weight:600;font-family:'DM Sans',sans-serif;cursor:pointer;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:8px;}
+  .gbtn:hover{background:var(--glow);color:var(--ink);}
+  .gerr{font-size:12px;color:#FF6B6B;display:none;padding:9px 12px;background:rgba(255,107,107,.08);border-radius:7px;border:1px solid rgba(255,107,107,.2);}
+  .msgs{padding:22px;height:420px;overflow-y:auto;display:none;flex-direction:column;gap:14px;scroll-behavior:smooth;}
+  .msgs::-webkit-scrollbar{width:3px;}
+  .msgs::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:2px;}
+  .msg{display:flex;gap:10px;max-width:88%;animation:fadeUp .3s ease;}
+  .msg.user{flex-direction:row-reverse;align-self:flex-end;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+  .ma{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;}
+  .msg.aria .ma{background:linear-gradient(135deg,var(--blue),var(--accent));color:white;font-family:'Syne',sans-serif;}
+  .msg.user .ma{background:rgba(255,255,255,.08);color:rgba(255,255,255,.5);}
+  .mb{padding:11px 14px;border-radius:13px;font-size:13px;line-height:1.6;}
+  .msg.aria .mb{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);color:rgba(255,255,255,.85);border-radius:3px 13px 13px 13px;}
+  .msg.user .mb{background:var(--accent);color:white;border-radius:13px 3px 13px 13px;}
+  .typing{display:flex;gap:4px;align-items:center;}
+  .typing span{width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.4;animation:blink 1.2s infinite;}
+  .typing span:nth-child(2){animation-delay:.2s;}
+  .typing span:nth-child(3){animation-delay:.4s;}
+  @keyframes blink{0%,80%,100%{opacity:.4}40%{opacity:1}}
+  .qqs{display:none;padding:0 18px 14px;flex-wrap:wrap;gap:7px;}
+  .qc{font-size:12px;padding:5px 12px;border-radius:100px;background:rgba(74,127,229,.1);border:1px solid rgba(74,127,229,.25);color:var(--glow);cursor:pointer;transition:all .2s;}
+  .qc:hover{background:rgba(74,127,229,.2);}
+  .inp-area{padding:14px 18px;border-top:1px solid rgba(255,255,255,.06);display:none;gap:10px;align-items:center;}
+  .ci{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:11px 14px;color:white;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;resize:none;transition:border-color .2s;}
+  .ci:focus{border-color:var(--accent);}
+  .ci::placeholder{color:rgba(255,255,255,.2);}
+  .sbtn{width:40px;height:40px;border-radius:9px;background:var(--accent);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;flex-shrink:0;}
+  .sbtn:hover{background:var(--glow);}
+  .stats{max-width:780px;margin:0 auto 70px;padding:0 40px;display:grid;grid-template-columns:repeat(4,1fr);gap:14px;}
+  .sc{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:13px;padding:18px;text-align:center;}
+  .sn{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;background:linear-gradient(135deg,var(--accent),var(--glow));-webkit-background-clip:text;-webkit-text-fill-color:transparent;margin-bottom:3px;}
+  .sl{font-size:11px;color:rgba(255,255,255,.3);}
+  .adm{position:fixed;bottom:18px;right:18px;z-index:200;background:rgba(10,10,26,.96);border:1px solid rgba(74,127,229,.3);border-radius:14px;width:310px;display:none;backdrop-filter:blur(20px);box-shadow:0 20px 40px rgba(0,0,0,.5);overflow:hidden;}
+  .ah{padding:13px 16px;background:rgba(74,127,229,.1);border-bottom:1px solid rgba(74,127,229,.2);display:flex;align-items:center;justify-content:space-between;}
+  .ah span{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--glow);}
+  .ac{cursor:pointer;color:rgba(255,255,255,.4);background:none;border:none;font-size:17px;}
+  .ab{padding:14px;max-height:340px;overflow-y:auto;}
+  .ir{padding:10px;border-radius:7px;margin-bottom:7px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);font-size:11px;line-height:1.5;}
+  .ir .in{font-weight:600;color:white;}
+  .ir .ie{color:var(--glow);}
+  .ir .iq{color:rgba(255,255,255,.45);margin-top:3px;}
+  .ir .it{color:rgba(255,255,255,.2);font-size:10px;}
+  .ni{text-align:center;padding:22px;color:rgba(255,255,255,.25);font-size:12px;}
+  .at{position:fixed;bottom:18px;right:18px;z-index:199;background:rgba(74,127,229,.12);border:1px solid rgba(74,127,229,.3);color:var(--glow);font-size:11px;font-weight:700;padding:7px 13px;border-radius:7px;cursor:pointer;letter-spacing:.06em;text-transform:uppercase;backdrop-filter:blur(10px);transition:all .2s;}
+  .at:hover{background:rgba(74,127,229,.22);}
+  @media(max-width:600px){header{padding:14px 18px;}.nav{display:none;}.hero,.chat-wrap,.stats{padding-left:18px;padding-right:18px;}.stats{grid-template-columns:repeat(2,1fr);}.row{flex-direction:column;}}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="page">
+  <header>
+    <div class="logo">ORCHESTRAI<span>™</span></div>
+    <nav class="nav">
+      <a href="https://github.com/TeamAngelLab/orchestrai-bootstrap" target="_blank">GitHub</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#industries">Industries</a>
+      <a href="https://github.com/TeamAngelLab/orchestrai-bootstrap" target="_blank" class="cta">Deploy Free ↗</a>
+    </nav>
+  </header>
+  <div class="hero">
+    <div class="badge">Sovereign AI OS · 23 Layers · 112 Patent Claims</div>
+    <h1>Ask <em>Aria</em> Anything About<br>ORCHESTRAI™</h1>
+    <p class="sub">Enterprise AI Specialist. Architecture, deployment, industry use cases, pricing, and support — all in one conversation.</p>
+  </div>
+  <div class="chat-wrap">
+    <div class="box">
+      <div class="box-head">
+        <div class="av"><div class="av-circle">A</div><div class="av-dot"></div></div>
+        <div><div class="ag-name">Aria</div><div class="ag-role">ORCHESTRAI™ Enterprise AI Specialist · Powered by Claude</div></div>
+        <div class="bgs"><span class="bg-tag">v24.0</span><span class="bg-tag">Live</span></div>
+      </div>
+      <div class="gate" id="gate">
+        <div class="gt">Verify your identity to speak with Aria</div>
+        <div class="gs">Company email required — personal emails are not accepted.</div>
+        <div class="row">
+          <div class="ig"><label>Full Name</label><input id="uN" placeholder="First Last" autocomplete="name"></div>
+          <div class="ig"><label>Company</label><input id="uC" placeholder="Acme Corp" autocomplete="organization"></div>
+        </div>
+        <div class="ig"><label>Work Email</label><input id="uE" type="email" placeholder="you@company.com" autocomplete="email"></div>
+        <div class="gerr" id="gErr"></div>
+        <button class="gbtn" onclick="vGate()">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Start Conversation with Aria
+        </button>
+      </div>
+      <div class="msgs" id="msgs"></div>
+      <div class="qqs" id="qqs">
+        <div class="qc" onclick="sQ(this)">What is ORCHESTRAI™?</div>
+        <div class="qc" onclick="sQ(this)">How do I deploy it?</div>
+        <div class="qc" onclick="sQ(this)">Healthcare use case</div>
+        <div class="qc" onclick="sQ(this)">What is ACE v2.0?</div>
+        <div class="qc" onclick="sQ(this)">Pricing & plans</div>
+        <div class="qc" onclick="sQ(this)">Financial services</div>
+      </div>
+      <div class="inp-area" id="inpArea">
+        <textarea class="ci" id="ci" rows="1" placeholder="Ask Aria anything about ORCHESTRAI™..." onkeydown="hKey(event)"></textarea>
+        <button class="sbtn" onclick="send()"><svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M22 2L11 13M22 2L15 22L11 13M22 2L2 9L11 13"/></svg></button>
+      </div>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="sc"><div class="sn">23</div><div class="sl">Architecture Layers</div></div>
+    <div class="sc"><div class="sn">112</div><div class="sl">Patent Claims</div></div>
+    <div class="sc"><div class="sn">500+</div><div class="sl">Tool Integrations</div></div>
+    <div class="sc"><div class="sn">20min</div><div class="sl">Enterprise Deploy</div></div>
+  </div>
+</div>
+<button class="at" id="aT" onclick="tAdm()">⚙ Admin</button>
+<div class="adm" id="adm">
+  <div class="ah"><span>📊 Inquiry Dashboard</span><button class="ac" onclick="tAdm()">×</button></div>
+  <div class="ab" id="aB"><div class="ni">No inquiries yet.</div></div>
+</div>
+<script>
+const PROXY_URL='https://dry-heart-6b89.mitennmehta.workers.dev';
+const BLOCKED=['gmail.com','yahoo.com','hotmail.com','outlook.com','icloud.com','protonmail.com','aol.com','mail.com','ymail.com','live.com','msn.com','googlemail.com','me.com','mac.com'];
+const inqs=[];let user=null;
+const SYS=`You are Aria, ORCHESTRAI™ Enterprise AI Specialist. Warm, professional, knowledgeable. ORCHESTRAI™ is the world's first Enterprise Sovereign AI OS built on Claude. 23-layer Quad-Core Grid, 112 patent claims, three-tool architecture (Chat/Cowork/Code), ACE v2.0 nine-stage evolution loop, FOSS-first, sovereign by default, 20-minute install. GitHub: github.com/TeamAngelLab/orchestrai-bootstrap. Pricing: Tier 1 $20-100/mo, Tier 2 $500-2000/mo, Tier 3 $5000+/mo. Industries: Healthcare (HIPAA/L4/L16), Finance (SOX/L22), Real Estate, Education, Insurance. Be concise, offer to go deeper, never invent facts.`;
+async function callAria(messages){
+  try{
+    const r=await fetch(PROXY_URL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({system:SYS,messages})});
+    if(!r.ok)throw new Error('HTTP '+r.status);
+    const d=await r.json();
+    return d.content?.[0]?.text||"I'm having trouble connecting. Please try again.";
+  }catch(e){return "Brief connectivity issue. Please try again or visit github.com/TeamAngelLab/orchestrai-bootstrap";}
+}
+function vGate(){
+  const n=document.getElementById('uN').value.trim();
+  const c=document.getElementById('uC').value.trim();
+  const e=document.getElementById('uE').value.trim().toLowerCase();
+  if(!n||!c||!e){showE('Please fill in all fields.');return;}
+  if(!e.includes('@')||!e.includes('.')){showE('Please enter a valid email.');return;}
+  const dom=e.split('@')[1];
+  if(BLOCKED.includes(dom)){showE('Please use your company email address.');return;}
+  document.getElementById('gErr').style.display='none';
+  user={name:n,company:c,email:e,time:new Date().toISOString()};
+  document.getElementById('gate').style.display='none';
+  document.getElementById('msgs').style.display='flex';
+  document.getElementById('inpArea').style.display='flex';
+  document.getElementById('qqs').style.display='flex';
+  logInq(n,c,e,'Session started');
+  addMsg('aria',`Hi ${n.split(' ')[0]}! I'm Aria, your ORCHESTRAI™ Enterprise AI Specialist.\n\nI can help with architecture, deployment, industry use cases, pricing, or support. What would you like to explore?`);
+}
+function showE(m){const e=document.getElementById('gErr');e.textContent=m;e.style.display='block';}
+function logInq(n,c,e,q){inqs.push({name:n,company:c,email:e,question:q,time:new Date().toLocaleString()});updAdm();}
+function updAdm(){const b=document.getElementById('aB');if(!inqs.length){b.innerHTML='<div class="ni">No inquiries yet.</div>';return;}b.innerHTML=[...inqs].reverse().map(i=>`<div class="ir"><div class="in">${i.name} · <span style="color:rgba(255,255,255,.4);font-weight:400">${i.company}</span></div><div class="ie">${i.email}</div><div class="iq">${i.question}</div><div class="it">${i.time}</div></div>`).join('');}
+const hist=[];
+function addMsg(role,text){const c=document.getElementById('msgs');const d=document.createElement('div');d.className=`msg ${role}`;const f=text.replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\n/g,'<br>');d.innerHTML=`<div class="ma">${role==='aria'?'A':'👤'}</div><div class="mb">${f}</div>`;c.appendChild(d);c.scrollTop=c.scrollHeight;hist.push({role:role==='aria'?'assistant':'user',content:text});}
+function showTyp(){const c=document.getElementById('msgs');const d=document.createElement('div');d.className='msg aria';d.id='typ';d.innerHTML=`<div class="ma">A</div><div class="mb"><div class="typing"><span></span><span></span><span></span></div></div>`;c.appendChild(d);c.scrollTop=c.scrollHeight;}
+function remTyp(){const t=document.getElementById('typ');if(t)t.remove();}
+async function send(){const ci=document.getElementById('ci');const txt=ci.value.trim();if(!txt)return;ci.value='';addMsg('user',txt);if(user)logInq(user.name,user.company,user.email,txt);showTyp();const reply=await callAria(hist.slice(-10).filter(m=>m.role!=='system'));remTyp();addMsg('aria',reply);}
+function sQ(el){document.getElementById('ci').value=el.textContent;send();}
+function hKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send();}}
+function tAdm(){const p=document.getElementById('adm'),t=document.getElementById('aT');const show=p.style.display==='none'||!p.style.display;p.style.display=show?'block':'none';t.style.display=show?'none':'block';}
+</script>
+</body>
+</html>
